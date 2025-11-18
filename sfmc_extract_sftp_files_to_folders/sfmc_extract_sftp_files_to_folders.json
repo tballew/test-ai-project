@@ -1,0 +1,44 @@
+{
+  "name" : "sfmc_extract_sftp_files_to_folders",
+  "jobMode" : "SCRIPT",
+  "description" : "",
+  "role" : "arn:aws:iam::640168415344:role/glue-test-role",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-640168415344-us-east-2/scripts/sfmc_extract_sftp_files_to_folders.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-glue-datacatalog" : "true",
+    "--sftp_directory" : "\"/Tracking/\"",
+    "--S3_SFTP_SOURCE" : "s3://advocare-snowflake-sftp/Tracking",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--TempDir" : "s3://aws-glue-assets-640168415344-us-east-2/temporary/",
+    "--python-modules-installer-option" : "-r",
+    "--enable-metrics" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-640168415344-us-east-2/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--additional-python-modules" : "s3://advocare-artifact-640168415344-dev/requirements.txt",
+    "--enable-observability-metrics" : "true",
+    "--job-language" : "python",
+    "--JOB_NAME" : "SFMC_Extract_SFTP_files_to_folders",
+    "--S3_OUTPUT_BASE" : "s3://advocare-source/salesforce"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 8,
+  "timeout" : 480,
+  "maxCapacity" : 8.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 8,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "test-ai-project",
+    "branch" : "main",
+    "folder" : "sfmc_extract_sftp_files_to_folders"
+  }
+}
